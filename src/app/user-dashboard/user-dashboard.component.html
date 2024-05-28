@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="container">
+  <table mat-table [dataSource]="userData" class="mat-elevation-z8 table" *ngIf="!usersLoading">
+    <ng-container matColumnDef="admin">
+      <th mat-header-cell *matHeaderCellDef> Role </th>
+      <td mat-cell *matCellDef="let element"> {{ element.admin ? 'Admin' : 'User' }} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button [routerLink]="['/user-details/', element.id]" [matTooltip]="(currentUser.admin && element.admin) ? 'Cant edit admin details' : !currentUser.admin ? 'Admin access required' : ''" mat-menu-item  [disabled]="!currentUser.admin || element.admin">
+            <span>Update user</span>
+          </button>
+          <button (click)="deleteUser(element.id)" mat-menu-item [matTooltip]="(currentUser.admin && element.admin) ? 'Cant delete admin' : !currentUser.admin ? 'Admin access required' : ''"   [disabled]="!currentUser.admin || element.admin">
+            <span>Delete user</span>
+          </button>
+          <button (click)="promoteToAdmin(element)" mat-menu-item [matTooltip]="!currentUser.admin ? 'Admin access required' : ''"   *ngIf="!element.admin" [disabled]="!currentUser.admin">
+            <span>Promote to admin</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <table mat-table [dataSource]="skeletonFakeData" class="mat-elevation-z8" *ngIf="usersLoading">
+    <ng-container matColumnDef="admin">
+      <th mat-header-cell *matHeaderCellDef> Role </th>
+      <td mat-cell *matCellDef="let element">
+        <ngx-skeleton-loader />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element">
+        <ngx-skeleton-loader />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element">
+        <ngx-skeleton-loader />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button  matTooltip="Info about the action" mat-menu-item>
+            <span>Update user</span>
+          </button>
+          <button mat-menu-item>
+            <span>Delete user</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

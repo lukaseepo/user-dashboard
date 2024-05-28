@@ -1,0 +1,122 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red !important;
+}
+
+input.ng-invalid.ng-dirty {
+  border: 1px solid red !important;
+}
+
+.auth-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 100px;
+  .form {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    box-shadow: -1px 0 6px #0000001a;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 10px;
+    row-gap: 20px;
+    .form-button-wrapper.end {
+      justify-content: end;
+    }
+    .form-button-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media screen and (max-width: 380px) {
+        flex-direction: column-reverse;
+        gap: 5px;
+      }
+      h4 {
+        font-size: 13px;
+        font-weight: normal;
+        a {
+          font-weight: bold;
+          text-decoration: none;
+          color: black;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      button {
+        width: max-content;
+        border-style: none;
+        background: transparent;
+        padding: 0 16px;
+        line-height: 32px;
+        border-radius: 7px;
+        cursor: pointer;
+      }
+    }
+    .inputs-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      padding-top: 15px;
+      .input-wrapper {
+        width: 100%;
+        position: relative;
+        .error {
+          font-size: 11px;
+          color: red;
+          position: absolute;
+          bottom: -16px;
+        }
+        input {
+          border-radius: 10px;
+          background: #ffffff;
+          width: 100%;
+          padding: .75rem;
+          border: 1px solid #ced4da;
+          font-size: 1rem;
+          outline: none;
+        }
+      }
+    }
+    .title {
+      width: 100%;
+      text-align: center;
+      h3{
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.mat-mdc-menu-panel {
+  border-radius: 5px !important;
+  position: relative;
+  border: 1px solid #dee2e6;
+  box-shadow: none !important;
+  .mat-mdc-menu-content{
+    padding: 0 ;
+    .mat-mdc-menu-item-text span{
+      font-size: 13px;
+    }
+    .mat-mdc-menu-item {
+      line-height:25px;
+      min-height: auto;
+      padding: 10px 16px;
+      height: 35px;
+      border-top: 1px solid #f8f8f8;
+    }
+    .mat-mdc-menu-item:first-child {
+      border-top: 0;
+    }
+  }
+}
+

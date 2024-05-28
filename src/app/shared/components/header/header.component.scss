@@ -1,0 +1,34 @@
+.header-section{
+  width: 100%;
+  background: white;
+  margin-bottom: 50px;
+  padding: 10px;
+  .header-items {
+    display: flex;
+    justify-content: end;
+    .profile{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      h4{
+        font-size: 16px;
+        font-weight: normal;
+        color: #282727;
+        padding-left: 10px;
+      }
+      .mat-icon {
+        font-weight: normal;
+        color: #282727;
+        width: max-content;
+        height: max-content;
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+::ng-deep .profile-menu {
+  top: 10px;
+  right: 25px;
+}

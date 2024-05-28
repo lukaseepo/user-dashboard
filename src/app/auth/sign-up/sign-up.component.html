@@ -1,0 +1,51 @@
+<div class="container">
+  <form class="auth-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+      <div class="title">
+        <h3>Register</h3>
+      </div>
+      <div class="inputs-wrapper">
+        <div class="input-wrapper">
+          <input type="text" placeholder="Name" formControlName="name">
+          <div class="error"
+               *ngIf="registrationForm.get('name')?.hasError('required') && (registrationForm.get('name')?.touched || registrationForm.get('name')?.dirty)">
+            Enter name
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="Email address" formControlName="email" (input)="userExists = false">
+          <div class="error"
+               *ngIf="registrationForm.get('email')?.hasError('required') && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty)">
+            Enter email
+          </div>
+          <div class="error"
+               *ngIf="registrationForm.get('email')?.hasError('pattern') && (registrationForm.get('email')?.touched || registrationForm.get('email')?.dirty)">
+            Enter a valid email
+          </div>
+          <div class="error" *ngIf="userExists">
+            Email is already registered
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input type="password" placeholder="Password" formControlName="password">
+          <div class="error"
+               *ngIf="registrationForm.get('password')?.hasError('required') && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)">
+            Enter password
+          </div>
+          <div class="error"
+               *ngIf="registrationForm.get('password')?.hasError('minlength') && (registrationForm.get('password')?.touched || registrationForm.get('password')?.dirty)">
+            Enter a valid password (minimum 6 characters)
+          </div>
+        </div>
+      </div>
+      <div class="form-button-wrapper">
+        <h4>
+          Already have an account? <a routerLink="../sign-in">Login</a>
+        </h4>
+        <button mat-button type="submit">
+          Register
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

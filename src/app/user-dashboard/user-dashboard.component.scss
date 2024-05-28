@@ -1,0 +1,6 @@
+.table {
+  @media screen and (max-width: 410px) {
+    display: block;
+    overflow-x: auto;
+  }
+}

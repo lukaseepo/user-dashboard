@@ -1,0 +1,44 @@
+<div class="container">
+  <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+      <div class="title">
+        <h3>Login</h3>
+      </div>
+      <div class="inputs-wrapper">
+        <div class="input-wrapper">
+          <input type="text" placeholder="Email address" formControlName="email" (change)="invalidCredentials = false">
+          <div class="error"
+               *ngIf="loginForm.get('email')?.hasError('required') && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+            Enter email
+          </div>
+          <div class="error"
+               *ngIf="loginForm.get('email')?.hasError('pattern') && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+            Enter a valid email
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input type="password" placeholder="Password" formControlName="password" (input)="invalidCredentials = false">
+          <div class="error"
+               *ngIf="loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+            Enter password
+          </div>
+          <div class="error"
+               *ngIf="loginForm.get('password')?.hasError('minlength') && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+            Enter a valid password (minimum 6 characters)
+          </div>
+          <div class="error" *ngIf="invalidCredentials">
+            Invalid email or password
+          </div>
+        </div>
+      </div>
+      <div class="form-button-wrapper">
+        <h4>
+          Don't have an account? <a routerLink="../sign-up">Create one</a>
+        </h4>
+        <button mat-button type="submit">
+          Login
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="container">
+  <form class="auth-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+      <div class="title">
+        <h3>Edit</h3>
+      </div>
+      <div class="inputs-wrapper">
+        <div class="input-wrapper">
+          <input type="text" placeholder="Name" formControlName="name">
+          <div class="error"
+               *ngIf="userForm.get('name')?.hasError('required') && (userForm.get('name')?.touched || userForm.get('name')?.dirty)">
+            Enter name
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="Email address" formControlName="email" (input)="userExists = false">
+          <div class="error"
+               *ngIf="userForm.get('email')?.hasError('required') && (userForm.get('email')?.touched || userForm.get('email')?.dirty)">
+            Enter email
+          </div>
+          <div class="error"
+               *ngIf="userForm.get('email')?.hasError('pattern') && (userForm.get('email')?.touched || userForm.get('email')?.dirty)">
+            Enter a valid email
+          </div>
+          <div class="error" *ngIf="userExists">
+            Email is already registered
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" placeholder="Password" formControlName="password">
+          <div class="error"
+               *ngIf="userForm.get('password')?.hasError('required') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)">
+            Enter password
+          </div>
+          <div class="error"
+               *ngIf="userForm.get('password')?.hasError('minlength') && (userForm.get('password')?.touched || userForm.get('password')?.dirty)">
+            Enter a valid password (minimum 6 characters)
+          </div>
+        </div>
+      </div>
+      <div class="form-button-wrapper">
+        <button mat-button type="submit" routerLink="/">
+          Back
+        </button>
+        <button mat-button type="submit" [disabled]="userForm.pristine">
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
